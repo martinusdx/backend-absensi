@@ -555,7 +555,7 @@ function getTodayRange() {
 
 // Schedule cron job untuk kirim reminder setiap minggu
 // minggu jam 18:00
-cron.schedule("22 18 * * *", async () => {
+cron.schedule("25 18 * * *", async () => {
   console.log("Cron job running at 09:00 every Sunday");
   // await sendReminder(0, "waktunya absen ya 👋");
   await sendReminder(0, "[TESTING NOTIF PRE-PROD] waktunya absen ya 👋");
