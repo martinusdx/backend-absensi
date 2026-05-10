@@ -563,6 +563,13 @@ cron.schedule("0 9 * * 0", async () => {
   // await sendReminder(0, "[TESTING NOTIF PRE-PROD] waktunya absen ya 👋");
 });
 
+// minggu jam 11:50
+cron.schedule("50 9 * * 0", async () => {
+  await sendReminder(0, "absen akan ditutup dalam waktu 10 menit lagi 🚫");
+}, {
+  timezone: "Asia/Jakarta" 
+});
+
 // minggu jam 09:55
 cron.schedule("55 9 * * 0", async () => {
   await sendReminder(0, "yuk absen, sisa 5 menit lagi ⏰");
@@ -570,19 +577,19 @@ cron.schedule("55 9 * * 0", async () => {
   timezone: "Asia/Jakarta"
 });
 
-// minggu jam 11:50
-cron.schedule("50 11 * * 0", async () => {
-  await sendReminder(0, "absen akan ditutup dalam waktu 10 menit lagi 🚫");
-}, {
-  timezone: "Asia/Jakarta" 
-});
+// // minggu jam 11:50
+// cron.schedule("50 11 * * 0", async () => {
+//   await sendReminder(0, "absen akan ditutup dalam waktu 10 menit lagi 🚫");
+// }, {
+//   timezone: "Asia/Jakarta" 
+// });
 
-// minggu jam 11:55
-cron.schedule("55 11 * * 0", async () => {
-  await sendReminder(0, "absen gasiihh, sisa 5 menit lagi tutup nih anjay 😑🚫");
-}, {
-  timezone: "Asia/Jakarta"
-});
+// // minggu jam 11:55
+// cron.schedule("55 11 * * 0", async () => {
+//   await sendReminder(0, "absen gasiihh, sisa 5 menit lagi tutup nih anjay 😑🚫");
+// }, {
+//   timezone: "Asia/Jakarta"
+// });
 
 const PORT = process.env.PORT || 3000;
 
