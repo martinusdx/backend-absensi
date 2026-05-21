@@ -138,9 +138,11 @@ app.get("/export-attendance-rekap", verifyAdmin, async (req, res) => {
     const monthMap = {}; // { "Januari 2026": [1,2,3...] }
 
     data.forEach(item => {
-      const d = new Date(item.tanggal);
-      const monthName = d.toLocaleDateString("id-ID", { month: "long", year: "numeric" });
-      const day = d.getDate();
+      // const d = new Date(item.tanggal);
+      // const monthName = d.toLocaleDateString("id-ID", { month: "long", year: "numeric" });
+      // const day = d.getDate();
+      const monthName = item.bulan_wib;
+      const day = item.hari_angka;
 
       if (!monthMap[monthName]) {
         monthMap[monthName] = new Set();
@@ -161,8 +163,10 @@ app.get("/export-attendance-rekap", verifyAdmin, async (req, res) => {
 
     data.forEach(item => {
       const name = item.name || "Unknown";
-      const d = new Date(item.tanggal);
-      const key = `${d.toLocaleDateString("id-ID", { month: "long", year: "numeric" })}-${d.getDate()}`;
+      // const d = new Date(item.tanggal);
+      // const key = `${d.toLocaleDateString("id-ID", { month: "long", year: "numeric" })}-${d.getDate()}`;
+      const key =
+        `${item.bulan_wib}-${item.hari_angka}`;
 
       if (!users[name]) users[name] = {};
       users[name][key] = item.status.toUpperCase();
