@@ -370,6 +370,53 @@ app.get("/export-attendance-rekap", verifyAdmin, async (req, res) => {
   }
 });
 
+app.get("/change-password", verifyAdmin, async (req, res) => {
+  try {
+
+      const { userId, newPassword } = req.body;
+
+      if (!userId || !newPassword) {
+          return res.status(400).json({
+              error: "Data tidak lengkap"
+          });
+      }
+
+      // minimal password
+      if (newPassword.length < 6) {
+          return res.status(400).json({
+              error: "Password minimal 6 karakter"
+          });
+      }
+
+      const { data, error } =
+          await supabase.auth.admin.updateUserById(
+              userId,
+              {
+                  password: newPassword
+              }
+          );
+
+      if (error) {
+          return res.status(400).json({
+              error: error.message
+          });
+      }
+
+      res.json({
+          success: true,
+          message: "Password berhasil direset"
+      });
+
+  } catch (err) {
+
+      console.error(err);
+
+      res.status(500).json({
+          error: err.message
+      });
+  }
+});
+
 app.get("/test-notif", async (req, res) => {
   try {
     await sendReminder(0, "ini test notif 🚀");
